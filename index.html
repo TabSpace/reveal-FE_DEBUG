@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>前端调试实战</title>
+
+<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+<meta name="author" content="Hakim El Hattab">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+<!-- Theme used for syntax highlighting of code -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+
+<!-- Printing and PDF exports -->
+<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+
+<style>
+.tl{
+	text-align: left;
+}
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+
+<section>
+	<h1>前端调试实战</h1>
+	<h3>YO! 你今天又写了多少BUG?</h3>
+	<p>
+		<small>
+			<a target="_blank" href="http://weibo.com/19266593">@Tab_Space</a>
+			|
+			<a target="_blank" href="https://github.com/TabSpace">github.com/tabspace</a>
+		</small>
+	</p>
+</section>
+
+<section>
+	<h2>先介绍一个代码界的传奇前辈</h2>
+	<div style="width: 40%; overflow: auto; height: 80vh; float: left;">
+		<img src="images/jeafdean.jpg" style="width: 100%; max-height: none;" />
+	</div>
+	<ul style="width:50%; overflow:hidden; float:right;">
+		<li>Google传奇工程师</li>
+		<li>关于Jeff Dean的事实节选</li>
+		<li class="fragment">编译器不会向Jeff Dean给出警告的，Jeff Dean会给编译器警告的</li>
+		<li class="fragment">很遗憾我不是他</li>
+		<li class="fragment">所以从开始工作至今我一直在改BUG</li>
+		<li class="fragment">这个分享主要议题：找BUG，改BUG和避免BUG</li>
+	</ul>
+</section>
+
+<section>
+	<h2>回味我还是小白的那个时候</h2>
+	<p>最熟悉的那个alert</p>
+	<ul>
+		<li>它会中断JS的执行</li>
+		<li>JS是单线程！</li>
+		<li>面对没有头绪的上万行代码怎么办？</li>
+		<li>有些bug, 控制台是不会给你警告的</li>
+	</ul>
+</section>
+
+<section>
+	<h2>二分调试</h2>
+	<ul>
+		<li>每次只留一半可执行代码</li>
+		<li>代码正常工作，就放出来一半</li>
+		<li>代码工作异常，就再隐藏一半</li>
+		<li>Math.pow(2, 14) === 16384</li>
+		<li>简单原始粗暴有效</li>
+	</ul>
+</section>
+
+<section>
+	<h2>THANKS</h2>
+	<img src="images/jquery.jpg" />
+</section>
+
+<section>
+	<h2>开个冷玩笑……</h2>
+</section>
+
+<section>
+	<h2>断点</h2>
+	<ul>
+		<li>debugger;</li>
+		<li></li>
+	</ul>
+</section>
+
+<section>
+	<h2>讲几个活久见的故事</h2>
+</section>
+
+<section>
+	<h2>你以为做移动端开发就能享受html5了？</h2>
+	<ul>
+		<li>ios 有坑</li>
+		<li>android 是个坑</li>
+		<li>android 国产浏览器是个大坑</li>
+		<li>android uc 浏览器是个巨坑</li>
+		<li>android 各厂商原生浏览器是个无底坑</li>
+		<li>二八原则</li>
+	</ul>
+</section>
+
+<section>
+	<h2>不要滥用 position:relative</h2>
+	<li>大量嵌套的 position:relative 容器</li>
+	<li>使用 .none{display:none;} 切换组件显示</li>
+	<li>初始化白屏</li>
+	<li>见于 android uc 浏览器</li>
+</section>
+
+<section>
+	<h2>animation 动画效果异常</h2>
+	<li>backface-visiblity: hidden;</li>
+</section>
+
+<section>
+	<h2>网页编码应当使用utf8</h2>
+	<ul>
+		<li>㎡ 与 m²</li>
+	</ul>
+</section>
+
+<section>
+	<h2>不要混写换行符</h2>
+	<ul>
+		<li>unix换行符 \n</li>
+		<li>windows换行符 \r\n</li>
+	</ul>
+</section>
+
+
+<section data-transition="slide-in fade-out">
+	<h2></h2>
+	<p class="fragment fade-out" style="position: absolute;">
+		<img src="images/adang-weibo.jpg" />
+	</p>
+	<p class="fragment fade-up" style="position: absolute;">
+		<img src="images/adang-zhihu.jpg" />
+	</p>
+</section>
+
+
+
+<section>
+	<h2>十年前前端圈子的状态</h2>
+	<ul>
+		<li class="fragment">2005-02-08 Google Maps Launched</li>
+		<li class="fragment">2005-02-18 Ajax</li>
+		<li class="fragment">2005-02-xx Prototype</li>
+		<li class="fragment">2005-03-xx Dojo</li>
+		<li class="fragment">2006-02-13 YUI</li>
+		<li class="fragment">2006-08-26 Jquery</li>
+		<li class="fragment">2006-xx-xx SASS</li>
+		<li class="fragment">2007-03-07 Mootools</li>
+	</ul>
+</section>
+
+<section>
+	<h2>2012 - 前端知识结构图</h2>
+	<p class="fragment">
+		<img src="images/2012-fe-skill-tree.jpg" />
+	</p>
+</section>
+
+<section>
+	<h2>2016年，前端在关注什么</h2>
+	<div class="fragment" style="width: 100%; overflow: auto; height: 60vh;">
+		<img src="images/2016-fe-focus.jpg" style="width: 100%; max-height: none;" />
+	</div>
+</section>
+
+<section>
+	<h2>2016 - 前端知识结构图</h2>
+	<p class="fragment">https://github.com/JacksonTian/fks</p>
+	<iframe class="fragment" src="http://html5ify.com/fks/fks_chart/" style="width:100%; height: 60vh;"></iframe>
+</section>
+
+<section>
+	<h2>问题来了</h2>
+	<ul>
+		<li class="fragment">前端每隔2年，难学一倍，如何跟上？</li>
+		<li class="fragment">如何解决选择困难？</li>
+		<li class="fragment">如何应对新技术热度的快速消逝？</li>
+		<li class="fragment">如何做积累？</li>
+		<li class="fragment">HTML,CSS,JS被抛弃怎么办？(AR,VR)</li>
+	</ul>
+</section>
+
+<section>
+	<h2>温故而知新</h2>
+	<p>我们过去究竟都解决了什么？</p>
+	<p>是什么驱动了一项技术的生存与进化？</p>
+</section>
+
+<section>
+	<h2>HTML因何而生</h2>
+	<ul>
+		<li>最早的需求：长期信息资源共享</li>
+		<li>图文排版: css</li>
+		<li>table 布局与 div 布局</li>
+		<li>div布局的胜利: 简单是王道, 但这个简单不是学习的简单</li>
+	</ul>
+</section>
+
+<section>
+	<h2>DHTML的得与失</h2>
+	<ul>
+		<li>漫天动画的时代</li>
+		<li>动态界面对用户视觉焦点的干扰</li>
+		<li>用户体验的核心: 信息检索效率</li>
+		<li>国外网站的简洁引导界面</li>
+		<li>国内网站的索引模式界面</li>
+		<li>习惯的力量: 对操作效率的影响</li>
+		<li>滚动 VS 点击</li>
+	</ul>
+</section>
+
+<section>
+	<h2>搜索引擎的兴起</h2>
+	<ul>
+		<li>SEO</li>
+		<li>HTML语义化</li>
+	</ul>
+</section>
+
+<section>
+	<h2>AJAX带来的启示</h2>
+	<ul>
+		<li>Google Map 遇到了什么问题？</li>
+		<li>ASP, ASP.net的局部刷新与AJAX的区别</li>
+		<li>魔兽世界的启动包</li>
+		<li>WEB应用的局限性: 运行效率，本地API权限</li>
+		<li>WEB应用程序的本质特长: 渐进加载，服务端更新</li>
+		<li>胖瘦客户端的交替前进: 各领风骚数年</li>
+	</ul>
+</section>
+
+<section>
+	<h2>jQuery的胜利</h2>
+	<ul>
+		<li>兼容性处理</li>
+		<li>不侵入原型</li>
+		<li>事件代理</li>
+		<li>更简洁的API: API设计的重要性</li>
+		<li>插件借助开源社区的力量</li>
+	</ul>
+</section>
+
+<section>
+	<h2>为什么它们不用jQuery?</h2>
+	<div style="width: 60%; overflow: auto; height: 80vh; float: left;">
+		<img src="images/framework-dream.jpg" style="width: 100%; max-height: none;" />
+	</div>
+	<ul style="width:35%; overflow:hidden; float:right;">
+		<li>Sina包 / STK</li>
+		<li style="line-height: 30px;"><a href="https://www.zhihu.com/question/20099586" target="blank" style="font-size: 24px;">知乎: 为什么很多国内公司不使用 jQuery 等开源 JS 框架（库），而选择自己开发 JavaScript 框架？</a></li>
+		<li class="fragment">Yahoo: YUI</li>
+		<li class="fragment">Google: angular</li>
+		<li class="fragment">Facebook: react</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Yahoo前端团队曾经对前端社区做的巨大贡献</h2>
+	<ul>
+		<li>YUI1 - YUI3 - EXT</li>
+		<li>YSLOW - Yahoo 13 条前端性能优化建议 (驱动框架的核心需求)</li>
+		<li>yui-loader</li>
+		<li>yui-compressor</li>
+		<li>combo server</li>
+	</ul>
+</section>
+
+<section>
+	<h2>同期的前端开发思想</h2>
+	<ul>
+		<li>namespace</li>
+		<li>css grid</li>
+		<li>css reset</li>
+		<li>组件化</li>
+		<li>自定义事件 - 观察者模式</li>
+		<li>JS 设计模式</li>
+	</ul>
+</section>
+
+<section>
+	<h2>YUI:面向对象的经典开发模式</h2>
+	<p>一度的巅峰: EXT</p>
+</section>
+
+<section>
+	<h2>前端生态环境的剧烈变化</h2>
+	<ul>
+		<li>移动端兴起:html5</li>
+		<li>JS能力的扩展:NodeJS</li>
+		<li class="fragment">思考: Jscript 和 VBScript 为何未能兴起? </li>
+		<li class="fragment">思考: flash的没落仅仅归结于乔布斯? </li>
+		<li class="fragment">思考: 前端为何忽然这么兴盛?</li>
+	</ul>
+</section>
+
+<section>
+	<h2>到目前为止Node的最大意义</h2>
+	<ul>
+		<li>戏言: 只有男人才懂男人</li>
+		<li>只有前端才懂前端</li>
+		<li>目前 Node 对前端工程生态的意义远大于在后端发挥的作用</li>
+	</ul>
+</section>
+
+<section>
+	<h2>开发工具的演化</h2>
+	<ul>
+		<li>Dreamweaver: 不专业的工具</li>
+		<li>Aptana, Eclipse: 笨重</li>
+		<li>notpad++, editplus, vim: 轻量,插件配置繁琐</li>
+		<li>sublime, atom: 改良的插件管理，借力社区</li>
+	</ul>
+</section>
+
+<section>
+	<h2>测试的演化</h2>
+	<ul>
+		<li>JSUnit</li>
+		<li>jquery unit:漂亮的UI</li>
+		<li>should:语义化</li>
+		<li>karma + mocha + chai: 插件组合</li>
+	</ul>
+</section>
+
+<section>
+	<h2>进击的CSS</h2>
+	<ul>
+		<li>SASS 2006 - 今</li>
+		<li>LESS: 沾了 Node 的光</li>
+		<li>PostCss: 插件化, 借助社区力量</li>
+	</ul>
+</section>
+
+<section>
+	<h2>任务管理的演化</h2>
+	<ul>
+		<li>ant: 你要学习java,社区支持不足</li>
+		<li>后端脚本: 一个字，累</li>
+		<li>grunt: 强大的Node社区后盾</li>
+		<li>gulp: 流概念的引入</li>
+		<li>webpack / fis: 插件管理</li>
+	</ul>
+</section>
+
+<section>
+	<h2>注意到什么关键词了吗？</h2>
+	<p class="fragment">插件！社区！</p>
+</section>
+
+<section>
+	<h2>模块管理的演化</h2>
+	<ul>
+		<li>YUI loader: 命名空间</li>
+		<li>后端脚本合并: python, php, java ...</li>
+		<li>AMD: requirejs, 相比YUIL没有实际明显优势</li>
+		<li>CMD: seajs, 相比YUIL没有实际明显优势</li>
+		<li>browserify, 质的变化:不用再写合并代码</li>
+		<li>webpack + es6 + babel, 质的变化:直接接轨未来</li>
+	</ul>
+</section>
+
+<section>
+	<h2>代码书写方式的演化</h2>
+	<ul>
+		<li>基础需求:智能提示 JSHint/JSLint</li>
+		<li>效率优化: Emmet</li>
+		<li>对JS语言的不满: CoffeeScript</li>
+		<li>万行 Hello World: Dart</li>
+		<li>TypeScript: 无论多好，推广不起来就会挂</li>
+		<li>ES6: 再不出来,就没ES6啥事儿了</li>
+		<li>ES演化方向: 编写更快，传输更快，解析更快，执行更快</li>
+	</ul>
+</section>
+
+<section>
+	<h2>观察者模式演化</h2>
+	<ul>
+		<li>自定义事件，广播</li>
+		<li>MVC: 开启属性监听</li>
+		<li>Angular: 脏检查</li>
+		<li>React: Virtural Dom + 组件化</li>
+		<li>Object.observe</li>
+		<li>immutable-js(php画外音:我们早就玩烂了)</li>
+	</ul>
+</section>
+
+<section>
+	<h2>广义HTML5</h2>
+	<ul>
+		<li>css3</li>
+		<li>audio, video</li>
+		<li>web-socket</li>
+		<li>webrtc</li>
+		<li>canvas / svg / webgl</li>
+		<li>...</li>
+	</ul>
+</section>
+
+<section>
+	<h2>JS能力的再度扩展</h2>
+	<ul>
+		<li>react-native</li>
+		<li>node-webkit</li>
+		<li>tessel.io</li>
+	</ul>
+	<p class="fragment">
+		<img src="images/tessel.jpg" />
+	</p>
+</section>
+
+<section>
+	<h2>JS统一世界?</h2>
+	<ul>
+		<li class="fragment">当你手里只有锤子，一切看起来都像钉子</li>
+		<li class="fragment">如果全世界人都会用锤子，能做成钉子的都会被设计成钉子</li>
+	</ul>
+</section>
+
+<section>
+	<h2>环境变化促生开发思想的革新</h2>
+</section>
+
+<section>
+	<h2>MVC: Backbone</h2>
+	<ul>
+		<li>RESTFUL</li>
+		<li>组件事件通知的尴尬: 思考一个遍布页面的关注按钮</li>
+		<li>分类对象的意义</li>
+		<li>管理前进与后退</li>
+		<li>由来已久的设计理念: 看看那些游戏的设计架构</li>
+		<li>M:dom, V:css, C:js</li>
+	</ul>
+</section>
+
+<section>
+	<h2>MVVM: 时间换时间</h2>
+	<ul>
+		<li>microsoft: winjs</li>
+		<li>knockout, ember</li>
+		<li>Google: angular</li>
+		<li>思考: 为什么 angular 出现在 Google?</li>
+		<li>思考: 为什么就 angular 火了?</li>
+		<li class="fragment">Google 业务场景</li>
+		<li class="fragment">大公司支持, 普适性, 开放, 社区力量, 被充分考虑的api设计与规范</li>
+		<li class="fragment">学习复杂度问题</li>
+	</ul>
+</section>
+
+<section>
+	<h2>BigPipe 与 React</h2>
+	<ul>
+		<li>BigPipe: 充分挖掘网络潜力</li>
+		<li>思考: 为什么 react 出现在 Facebook?</li>
+		<li class="fragment">Facebook 业务场景</li>
+		<li class="fragment">对比 weibo 业务场景</li>
+		<li class="fragment">React Native 与社区支持</li>
+	</ul>
+</section>
+
+<section>
+	<h2>阴云:SPA困境</h2>
+	<p>OK, 你开始使用React</p>
+	<p class="fragment">
+		<img src="images/react-big-size.jpg" />
+	</p>
+</section>
+
+<section>
+	<h2>网络性能不是问题？</h2>
+	<ul>
+		<li>你以为网络应该是这样:</li>
+		<li>WIFI: 30M/S</li>
+		<li class="fragment">实际上网络是这样:</li>
+		<li class="fragment">阻塞, 丢包, GreatWall</li>
+		<li class="fragment">JS下载完成之前，你不会获得内容</li>
+		<li class="fragment">做直出? 同一套代码？仅仅是同一套模板</li>
+		<li class="fragment">性能？内存？稳定性？上报？监控？人力？</li>
+	</ul>
+</section>
+
+<section>
+	<h2>刨除网络性能问题</h2>
+	<ul>
+		<li>内存管理: 模块不断被加载，何时拆卸?</li>
+		<li>SEO怎么办? 上prerender? 效果如何?</li>
+		<li>不同框架，不同的学习成本与管理成本</li>
+		<li>大量属性监听带来的执行性能问题</li>
+		<li>对比以往，我们试图控制的状态是不是太多了? </li>
+	</ul>
+</section>
+
+<section>
+	<h2>没有通用的最佳实践</h2>
+	<p>web大环境的发展依然缓慢</p>
+</section>
+
+<section>
+	<h2>也许是解药，也许是危机</h2>
+	<ul>
+		<li>web components</li>
+		<li>http2</li>
+		<li>VR, AR</li>
+	</ul>
+</section>
+
+<section>
+	<h2>我们已经有了什么</h2>
+	<ul>
+		<li>大量可能存在兼容性问题的浏览器API</li>
+		<li>标准的模块管理规范</li>
+		<li>极大丰富的效率优化工具</li>
+		<li>类 MVC 思想的引入</li>
+		<li>一个还在进击各个领域的语言</li>
+		<li>极大丰富的开源组件</li>
+		<li>能力各异的框架</li>
+	</ul>
+</section>
+
+<section>
+	<h2>总结</h2>
+</section>
+
+<section>
+	<h2>前端已发展为一项综合学科</h2>
+	<ul>
+		<li>本质是人机交互方向</li>
+		<li>用户体验与交互设计</li>
+		<li>开发效率</li>
+		<li>性能管理</li>
+		<li>用户安全</li>
+	</ul>
+</section>
+
+<section>
+	<h2>行业发展趋势</h2>
+	<ul>
+		<li class="fragment">上层决定下层，变化永不会停止</li>
+		<li class="fragment">标准与社区活跃度决定生命活力</li>
+		<li class="fragment">HTML,CSS可能会比JS活的更久</li>
+		<li class="fragment">下一巨变在AR领域: 回归简单</li>
+		<li class="fragment">WEB 3D展示</li>
+		<li class="fragment">平面设计不会死: 全新的响应式设计</li>
+		<li class="fragment">多屏互动</li>
+	</ul>
+</section>
+
+<section>
+	<h2>个人的建议</h2>
+	<ul style="width:45%; float: left;">
+		<li>前端每隔2年，难学一倍，如何跟上？</li>
+		<li>如何解决选择困难？</li>
+		<li>如何应对新技术热度的快速消逝？</li>
+		<li>如何做积累？</li>
+		<li>HTML,CSS,JS被抛弃怎么办？(AR,VR)</li>
+	</ul>
+	<ul style="width:45%; float: right;">
+		<li class="fragment">按需学习, 基础优先</li>
+		<li class="fragment">结合开源, 维护优先</li>
+		<li class="fragment">学习开发思想，算法与解决方案</li>
+		<li class="fragment">持续更新个人技术栈</li>
+		<li class="fragment">技术并不是全部</li>
+	</ul>
+</section>
+
+<section class="tl">
+	<h1>THE END</h1>
+	<p>
+		-
+		<a target="_blank" href="https://github.com/TabSpace/reveal-FE_10_YEARS">Github:前端工程这十年</a>
+		<br>
+		-
+		<a target="_blank" href="http://tabspace.github.io/">tabspace.github.io</a>
+	</p>
+</section>
+
+<section>
+	<h2>展望未来</h2>
+	<ul>
+		<li><a href="http://v.youku.com/v_show/id_XOTQzMTEyODg=.html">视频: 微软Office实验室-愿景未来2019</a></li>
+		<li><a href="http://v.youku.com/v_show/id_XODc3MTA4MDA4.html">视频: hololens微软全息眼镜宣传片</a></li>
+		<li><a href="http://v.youku.com/v_show/id_XMTM2NjM0MjE1Ng">视频: Magic Leap Demo</a></li>
+	</ul>
+</section>
+
+</div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+// More info https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+	controls: true,
+	progress: true,
+	history: true,
+	center: true,
+
+	transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+	// More info https://github.com/hakimel/reveal.js#dependencies
+	dependencies: [
+		{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+		{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+		{ src: 'plugin/zoom-js/zoom.js', async: true },
+		{ src: 'plugin/notes/notes.js', async: true }
+	]
+});
+</script>
+
+</body>
+</html>
