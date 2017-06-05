@@ -68,7 +68,6 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 		<li class="fragment">编译器不会向Jeff Dean给出警告的，Jeff Dean会给编译器警告的</li>
 		<li class="fragment">很遗憾我不是他</li>
 		<li class="fragment">所以从开始工作至今我一直在改BUG</li>
-		<li class="fragment">这个分享主要议题：找BUG，改BUG和避免BUG</li>
 	</ul>
 </section>
 
@@ -156,7 +155,49 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>环境模拟</h2>
+	<h2>调试环境</h2>
+	<p>可重现的 bug 才是可以调试的 bug</p>
+</section>
+
+<section>
+	<h2>几个要点</h2>
+	<ul>
+		<li>确保你进入的是相同的测试环境</li>
+		<li>确保特定操作步骤可重现这个BUG</li>
+		<li>确保排除了其他相关因素</li>
+		<li>先用 chrome 排除逻辑问题</li>
+		<li>再模拟实际环境解决兼容性问题</li>
+	</ul>
+</section>
+
+<section>
+	<h2>网络基础知识</h2>
+	<p>为什么说前端一定要多少懂点后端知识？</p>
+	<ul>
+		<li>WEB服务</li>
+		<li>CDN</li>
+		<li>代理</li>
+	</ul>
+</section>
+
+<section>
+	<h2>配置hosts</h2>
+	<ul>
+		<li>c:/windows/system32/drivers/etc/hosts</li>
+		<li>如果hosts未生效，清除dns缓存</li>
+		<li>ipconfig /flushdns</li>
+		<li>用 ping 命令检测</li>
+	</ul>
+</section>
+
+<section>
+	<h2>配置hosts</h2>
+	<ul>
+		<li></li>
+		<li>如果hosts未生效，清除dns缓存</li>
+		<li>ipconfig /flushdns</li>
+		<li>用 ping 命令检测</li>
+	</ul>
 </section>
 
 <section>
@@ -180,15 +221,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>进入调试环境</h2>
-</section>
-
-<section>
-	<h2>配置hosts</h2>
+	<h2>不要使用 IETester</h2>
 	<ul>
-		<li>c:/windows/system32/drivers/etc/hosts</li>
-		<li>如果hosts未生效，清除dns缓存</li>
-		<li>ipconfig /flushdns</li>
+		<li>使用虚拟机 vhosts</li>
 	</ul>
 </section>
 
