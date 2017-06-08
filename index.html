@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>前端调试</title>
+<title>前端调试环境全面解析</title>
 
 <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 <meta name="author" content="Hakim El Hattab">
@@ -46,8 +46,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <div class="slides">
 
 <section>
-	<h1>前端调试</h1>
-	<h3>YO! 你今天又写了多少BUG?</h3>
+	<h1>前端调试环境全面解析</h1>
 	<p>
 		<small>
 			<a target="_blank" href="http://weibo.com/19266593">@Tab_Space</a>
@@ -221,53 +220,59 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>不要使用 IETester</h2>
+	<h2>使用正确的调试工具</h2>
 	<ul>
-		<li>使用虚拟机 vhosts</li>
+		<li>不要使用 IETester</li>
+		<li>使用虚拟机</li>
 	</ul>
 </section>
 
 <section>
-	<h2>活久见实录</h2>
+	<h2>还有什么需要注意的?</h2>
 </section>
 
 <section>
-	<h2>animation 动画效果异常</h2>
-	<p>backface-visibility: hidden;</p>
-</section>
-
-<section>
-	<h2>网页编码应当使用utf8</h2>
+	<h2>HACK</h2>
 	<ul>
+		<li>例子: animation 动画效果异常</li>
+		<li>backface-visibility: hidden;</li>
+	</ul>
+</section>
+
+<section>
+	<h2>规范</h2>
+	<ul>
+		<li>例子: 网页编码应当使用utf8</li>
 		<li>㎡ 与 m²</li>
 		<li class="fragment">㎡: \u33a1 gbk支持</li>
-		<li class="fragment">²: \u00B2 gbk不支持</li>
+		<li class="fragment">²: \u00B2 gbk不支持，无法显示</li>
 	</ul>
 </section>
 
 <section>
-	<h2>不要混写换行符</h2>
+	<h2>工具</h2>
 	<ul>
+		<li>例子: 不要混写换行符</li>
 		<li>unix换行符 \CR</li>
 		<li>windows换行符 \CR\LF</li>
+		<li>换行符引发的血案</li>
 	</ul>
 </section>
 
 <section>
-	<h2>饭不能乱吃</h2>
-	<p>position:relative 不能滥用</p>
+	<h2>习惯</h2>
 	<ul>
+		<li>例子: 不要滥用 position:relative</li>
 		<li>大量嵌套的 position:relative 容器</li>
 		<li>使用 .none{display:none;} 切换组件显示</li>
-		<li>初始化白屏</li>
-		<li>见于 android uc 浏览器</li>
+		<li>真实案例: 初始化白屏，见于 android uc 浏览器</li>
 	</ul>
 </section>
 
 <section>
 	<h1>THE END</h1>
 	<p>
-		<a target="_blank" href="https://github.com/TabSpace/reveal-FE_DEBUG">Github:前端调试</a>
+		<a target="_blank" href="https://github.com/TabSpace/reveal-FE_DEBUG">//github.com/TabSpace/reveal-FE_DEBUG</a>
 	</p>
 </section>
 
