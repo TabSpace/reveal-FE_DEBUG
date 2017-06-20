@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>前端调试环境全面解析</title>
+<title>前端调试</title>
 
 <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 <meta name="author" content="Hakim El Hattab">
@@ -46,7 +46,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <div class="slides">
 
 <section>
-	<h1>前端调试环境全面解析</h1>
+	<h1>前端调试</h1>
 	<p>
 		<small>
 			<a target="_blank" href="http://weibo.com/19266593">@Tab_Space</a>
@@ -63,21 +63,20 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 	</div>
 	<ul style="width:50%; overflow:hidden; float:right;">
 		<li>Google传奇工程师</li>
-		<li>关于Jeff Dean的事实节选</li>
-		<li class="fragment">编译器不会向Jeff Dean给出警告的，Jeff Dean会给编译器警告的</li>
-		<li class="fragment">很遗憾我不是他</li>
-		<li class="fragment">所以从开始工作至今我一直在改BUG</li>
+		<li style="margin-top: 20px;">关于Jeff Dean的事实节选</li>
+		<li class="fragment" style="margin-top: 20px;">编译器不会向Jeff Dean给出警告的，Jeff Dean会给编译器警告的</li>
+		<li class="fragment" style="margin-top: 20px;">很遗憾我不是他</li>
+		<li class="fragment" style="margin-top: 20px;">从入坑至今我一直在改BUG</li>
 	</ul>
 </section>
 
 <section>
-	<h2>回味我还小的时候</h2>
+	<h2>回味当年</h2>
 	<p>最熟悉的那个alert</p>
 	<ul>
 		<li>它会中断JS的执行</li>
 		<li>JS是单线程！</li>
 		<li>面对没有头绪的上万行代码怎么办？</li>
-		<li>有些bug, 控制台是不会给你警告的</li>
 	</ul>
 </section>
 
@@ -88,12 +87,13 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 		<li>代码正常工作，就放出来一半</li>
 		<li>代码工作异常，就再隐藏一半</li>
 		<li>Math.pow(2, 14) === 16384</li>
-		<li>简单粗暴原始有效</li>
+		<li>简单原始粗暴有效</li>
 	</ul>
 </section>
 
 <section>
-	<h2>THANKS</h2>
+	<h2>THE END</h2>
+	<p>这就是老夫行走天下多年的江湖经验</p>
 	<img src="images/jquery.jpg" />
 </section>
 
@@ -103,24 +103,24 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 <section>
 	<h2>感谢chrome</h2>
-	<p><a href="https://developer.chrome.com/devtools">devtools</a></p>
+	<p><a href="https://developer.chrome.com/devtools">https://developer.chrome.com/devtools</a></p>
+	<img src="images/devtools.jpg" />
 </section>
 
 <section>
-	<h2>断点</h2>
-	<p>debugger;</p>
-	<img src="images/debugger.jpg" />
+	<h2>基本调试流程</h2>
+	<ul>
+		<li>配置调试环境确保 bug 重现</li>
+		<li>使用 chrome 调试确认业务逻辑是否存在问题</li>
+		<li>确认是否为数据问题(接口返回数据错误)</li>
+		<li>使用相同环境浏览器，调试浏览器兼容性问题</li>
+		<li>确认是否为环境配置问题(windows补丁之类)</li>
+	</ul>
 </section>
 
 <section>
-	<h2>断点</h2>
-	<p>breakpoint</p>
-	<img src="images/breakpoint.jpg" />
-</section>
-
-<section>
-	<h2>变量监视</h2>
-	<img src="images/breakpoint-var.jpg" />
+	<h2>日志调试</h2>
+	<p>console.log</p>
 </section>
 
 <section>
@@ -146,37 +146,87 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <section>
 	<h2>日志调试经验谈</h2>
 	<ul>
-		<li>添加前缀指明调用位置</li>
+		<li>适用于绝大多数情况</li>
+		<li>添加前缀，指明调用位置</li>
 		<li>一次性添加多个关键点日志</li>
-		<li>不要保留被注释的代码</li>
-		<li>不要保留调试代码，代码清洁很重要</li>
+		<li>不要用注释保留调试代码，代码清洁很重要</li>
 	</ul>
 </section>
 
 <section>
-	<h2>调试环境</h2>
+	<h2>断点调试</h2>
+</section>
+
+<section>
+	<p>debugger;</p>
+	<p style="font-size: 28px;">调用任何一个可用的调试器</p>
+	<p style="font-size: 28px;">如果没有调试器可用,则该语句没有任何效果</p>
+	<img src="images/debugger.jpg" />
+</section>
+
+<section>
+	<p>breakpoint</p>
+	<img src="images/breakpoint.jpg" />
+</section>
+
+<section>
+	<h2>变量监视</h2>
+	<img src="images/breakpoint-var.jpg" />
+</section>
+
+<section>
+	<h2>单步调试</h2>
+	<ul>
+		<li>step over next function call</li>
+		<li>跳过接下来一整个函数执行</li>
+		<li>你认为接下来的这个函数是没问题的</li>
+		<li style="margin-top: 20px;">step into next function call</li>
+		<li>进入接下来的一个函数体</li>
+		<li>你认为接下来的这个函数可能存在问题</li>
+		<li style="margin-top: 20px;">step out of current function</li>
+		<li>退出当前函数体</li>
+		<li>你进去看了看，估计没啥问题</li>
+	</ul>
+</section>
+
+<section>
+	<h2>断点调试经验谈</h2>
+	<ul>
+		<li>不修改源代码</li>
+		<li>适用于检查复杂逻辑</li>
+		<li>频繁的思维打断比较消耗时间</li>
+		<li>仅用于寻找问题，不用于修改代码</li>
+	</ul>
+</section>
+
+<section>
+	<h2>配置调试环境</h2>
 	<p>可重现的 bug 才是可以调试的 bug</p>
 </section>
 
 <section>
-	<h2>几个要点</h2>
+	<h2>使用正确的调试工具</h2>
 	<ul>
-		<li>确保你进入的是相同的测试环境</li>
-		<li>确保特定操作步骤可重现这个BUG</li>
-		<li>确保排除了其他相关因素</li>
-		<li>先用 chrome 排除逻辑问题</li>
-		<li>再模拟实际环境解决兼容性问题</li>
+		<li>不要使用类似 IE Tester 之类第三方模拟器</li>
+		<li>使用虚拟机</li>
+		<li>移动端真机测试不可避免</li>
 	</ul>
 </section>
 
 <section>
 	<h2>网络基础知识</h2>
-	<p>为什么说前端一定要多少懂点后端知识？</p>
+	<p>前端调试需要了解的后端知识</p>
 	<ul>
 		<li>WEB服务</li>
 		<li>CDN</li>
 		<li>代理</li>
 	</ul>
+</section>
+
+<section>
+	<h2>CDN</h2>
+	<p>这意味着线上静态文件往往在另一个域名</p>
+	<img src="images/cdn.jpg" />
 </section>
 
 <section>
@@ -190,13 +240,30 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>配置hosts</h2>
-	<ul>
-		<li></li>
-		<li>如果hosts未生效，清除dns缓存</li>
-		<li>ipconfig /flushdns</li>
-		<li>用 ping 命令检测</li>
-	</ul>
+	<h2>chrome 查看每个请求的 dns 解析</h2>
+	<img src="images/chrome-network-dns.jpg" />
+</section>
+
+<section>
+	<h2>chrome 清除 DNS 缓存</h2>
+	<p><a href="chrome://net-internals/#dns" target="_blank">chrome://net-internals/#dns</a></p>
+	<img src="images/chrome-dns-clean.jpg" />
+</section>
+
+<section>
+	<h2>代理</h2>
+</section>
+
+<section>
+	<h2>MOCK服务与反向代理</h2>
+</section>
+
+<section>
+	<h2>配置虚拟机</h2>
+</section>
+
+<section>
+	<h2>移动端调试</h2>
 </section>
 
 <section>
@@ -220,19 +287,35 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>使用正确的调试工具</h2>
+	<h2>控制台模拟</h2>
+	<ul style="width: 60%; float: left; list-style: none;">
+		<li><a href="https://github.com/WechatFE/vConsole" target="_blank">WechatFE/vConsole</a></li>
+		<li><a href="https://www.npmjs.com/package/vconsole-webpack-plugin" target="_blank">vconsole-webpack-plugin</a></li>
+		<li><img src="images/webpack-vconsole.jpg" /></li>
+	</ul>
+	<img src="images/vconsole.png" style="width: 30%; float: right;" />
+</section>
+
+<section>
+	<h2>如何节省调试开销?</h2>
+</section>
+
+<section>
+	<h2>使用 Linter</h2>
 	<ul>
-		<li>不要使用 IETester</li>
-		<li>使用虚拟机</li>
+		<li><a href="http://eslint.cn/" target="_blank">http://eslint.cn/</a></li>
+		<li>自定义适合自己的约束规则</li>
+		<li><a href="https://github.com/Gillespie59/eslint-plugin-angular" target="_blank">eslint-plugin-angular</a></li>
+		<li><a href="https://github.com/SublimeLinter/SublimeLinter3" target="_blank">sublime linter</a></li>
 	</ul>
 </section>
 
 <section>
-	<h2>还有什么需要注意的?</h2>
+	<img src="images/eslint.jpg" />
 </section>
 
 <section>
-	<h2>HACK</h2>
+	<h2>积累 HACK</h2>
 	<ul>
 		<li>例子: animation 动画效果异常</li>
 		<li>backface-visibility: hidden;</li>
@@ -240,31 +323,30 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>规范</h2>
+	<h2>遵守规范</h2>
 	<ul>
 		<li>例子: 网页编码应当使用utf8</li>
 		<li>㎡ 与 m²</li>
-		<li class="fragment">㎡: \u33a1 gbk支持</li>
-		<li class="fragment">²: \u00B2 gbk不支持，无法显示</li>
+		<li>㎡: \u33a1 gbk支持</li>
+		<li>²: \u00B2 gbk不支持，无法显示</li>
 	</ul>
 </section>
 
 <section>
-	<h2>工具</h2>
+	<h2>完善手头工具</h2>
 	<ul>
-		<li>例子: 不要混写换行符</li>
+		<li>长期坚持，不断更新</li>
+		<li>例子: 混用换行符引发的页面输出故障</li>
 		<li>unix换行符 \CR</li>
 		<li>windows换行符 \CR\LF</li>
-		<li>换行符引发的血案</li>
 	</ul>
 </section>
 
 <section>
-	<h2>习惯</h2>
+	<h2>培养好习惯</h2>
 	<ul>
+		<li>让代码趋于更加合理，而不是能工作就行</li>
 		<li>例子: 不要滥用 position:relative</li>
-		<li>大量嵌套的 position:relative 容器</li>
-		<li>使用 .none{display:none;} 切换组件显示</li>
 		<li>真实案例: 初始化白屏，见于 android uc 浏览器</li>
 	</ul>
 </section>
@@ -272,7 +354,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <section>
 	<h1>THE END</h1>
 	<p>
-		<a target="_blank" href="https://github.com/TabSpace/reveal-FE_DEBUG">//github.com/TabSpace/reveal-FE_DEBUG</a>
+		<a target="_blank" href="https://github.com/TabSpace/reveal-FE_DEBUG">TabSpace/reveal-FE_DEBUG</a>
 	</p>
 </section>
 
@@ -290,6 +372,8 @@ Reveal.initialize({
 	history: true,
 	center: true,
 
+	allottedTime: 45 * 60 * 1000,
+
 	transition: 'slide', // none/fade/slide/convex/concave/zoom
 
 	// More info https://github.com/hakimel/reveal.js#dependencies
@@ -299,7 +383,8 @@ Reveal.initialize({
 		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 		{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 		{ src: 'plugin/zoom-js/zoom.js', async: true },
-		{ src: 'plugin/notes/notes.js', async: true }
+		{ src: 'plugin/notes/notes.js', async: true },
+		{ src: 'plugin/elapsed-time-bar/elapsed-time-bar.js'}
 	]
 });
 </script>
