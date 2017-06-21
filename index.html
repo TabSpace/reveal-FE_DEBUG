@@ -173,11 +173,6 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>变量监视</h2>
-	<img src="images/breakpoint-var.jpg" />
-</section>
-
-<section>
 	<h2>单步调试</h2>
 	<ul>
 		<li>step over next function call</li>
@@ -190,6 +185,11 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 		<li>退出当前函数体</li>
 		<li>你进去看了看，估计没啥问题</li>
 	</ul>
+</section>
+
+<section>
+	<h2>变量监视</h2>
+	<img src="images/breakpoint-var.jpg" />
 </section>
 
 <section>
@@ -223,6 +223,11 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <section>
 	<h2>网络状况模拟</h2>
 	<img src="images/throtting.jpg" />
+</section>
+
+<section>
+	<h2>模拟传感器信息</h2>
+	<img src="images/chrome-sensors.jpg" />
 </section>
 
 <section>
@@ -399,6 +404,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 <section>
 	<h2>fiddler 代理服务配置</h2>
+	<p>记得开启 Allow remote computers to connect</p>
+	<p>注意防火墙警告</p>
 	<img src="images/fiddler-options.png" />
 </section>
 
@@ -487,6 +494,225 @@ let mergeCORSHeader = (reqHeader, originHeader) => {
 
 <section>
 	<h2>MOCK服务与反向代理</h2>
+</section>
+
+<section>
+	<h2>Mock.js</h2>
+	<p><a href="http://mockjs.com/" target="_blank">http://mockjs.com</a></p>
+	<img src="images/mockjs-site.jpg" alt="">
+</section>
+
+<section>
+	<h2>使用 Mock.js</h2>
+	<p><a href="https://github.com/nuysoft/Mock" target="_blank">https://github.com/nuysoft/Mock</a></p>
+	<img src="images/mockjs-use.jpg" alt="">
+</section>
+
+<section>
+	<h2>Mock.js 示例</h2>
+	<img src="images/mockjs-output.jpg" alt="">
+</section>
+
+<section>
+	<h2>Mock Server</h2>
+	<p><a href="https://github.com/thx/RAP" target="_blank">https://github.com/thx/RAP</a></p>
+	<img src="images/mock-rap.jpeg" alt="">
+</section>
+
+<section>
+	<h2>Mock Server</h2>
+	<ul>
+		<li><a href="https://github.com/yvasiyarov/swagger" target="_blank">swagger</a></li>
+		<li><a href="http://swagger.io/" target="_blank">swagger.io</a></li>
+		<li><a href="https://github.com/jakerella/jquery-mockjax" target="_blank">jquery-mockjax</a></li>
+		<li><a href="https://github.com/SporeUI/spore-mock" target="_blank">spore-mock</a></li>
+	</ul>
+</section>
+
+<section>
+	<h2>Mock 服务示例</h2>
+	<p>src/mods/doc/p-photo/house.mock.js</p>
+	<img src="images/mock-demojs.jpg" alt="">
+</section>
+
+<section>
+	<h2>Mock 数据引入</h2>
+	<p>src/mock/doc/demo.js</p>
+	<pre><code class="hljs">
+var out = {};
+out.common = require('../../mods/common/mock');
+
+out.common.title = 'demo';
+
+out.data = {};
+
+out.data.header = require('../../mods/doc/p-header/mock');
+out.data.list = {
+	FData: {}
+};
+out.data.list.FData.photo = require('../../mods/doc/p-photo/mock');
+out.data.list.FData.house = require('../../mods/doc/p-photo/house.mock');
+
+module.exports = out;
+	</code></pre>
+</section>
+
+<section>
+	<h2>展示 Mock 数据</h2>
+	<img src="images/mock-view.jpg" alt="" style="width: 70%;">
+</section>
+
+<section>
+	<h2>渲染 Mock 数据</h2>
+	<pre><code class="hljs">
+mixin p-photo(photo, house)
+	if (photo &nbsp;&nbsp; photo['data'] &nbsp;&nbsp; photo['data'].length > 0) || (house &nbsp;&nbsp; house['data'] &nbsp;&nbsp; house['data'].length > 0)
+		.weui-panel.p-photo
+			.weui-panel__hd 实际业务模块测试
+			.weui-panel__bd.u-borderbox
+				.weui-media-box.weui-media-box_text
+					p.weui-media-box__desc 这个模块用于测试实际业务中，pug 转 php 的应用。该模块来自微报业务。
+				each pitem in photo['data']
+					a.weui-media-box.photo(href=pitem['url'], bosszone="boss3355,mp-picnews")
+						.weui-media-box__title.title #{pitem['title']}
+						//- pug 转 php 过程中要尽量避免业务逻辑代码
+						//- 属性必须在模板逻辑中拼接完全，直接赋值给dom属性，直接在属性括号中拼接数据会导致php报错
+						- var pitemImg = pitem['img'];
+						- pitemImg = 'background-image:url(' + pitemImg + ');';
+						//- 这样会产生php错误: pitemImg = 'background-image:url(' + pitem['img'] + ');';
+						.img(style=pitemImg)
+						//- 这样会产生php错误: .img(style='background-image:url(' + pitem.img + ');')
+				each hitem in house['data']
+					- var hitemBoss = hitem['id'];
+					- hitemBoss = 'boss3355,' + hitemBoss;
+					//- 这样会产生php错误: hitemBoss = 'boss3355,' + hitem['id'];
+					a.weui-media-box.weui-media-box_appmsg.house(href=hitem['url'], bosszone=hitemBoss)
+						.weui-media-box__hd
+							- var hitemBg = hitem['img'];
+							- hitemBg = 'background-image:url(' + hitemBg + ');';
+							.weui-media-box__thumb(style=hitemBg)
+						.weui-media-box__bd
+							.weui-media-box__title #{hitem['title']}
+							p.info
+								span.businessName #{hitem['businessName']}
+								span.price #{hitem['price']}
+								span.unit #{hitem['unit']}
+							p.address #{hitem['address']}
+							p.tags
+								each tag in hitem['tags']
+									span.tag #{tag}
+//- 属性均用 [] 符号获取，否则大写字母开头的属性可能会引发php编译错误
+//- 例如 photo.Photo 会引发编译错误，而 photo['Photo'] 不会
++p-photo(
+	out['data']['list']['FData']['photo'],
+	out['data']['list']['FData']['house']
+)
+	</code></pre>
+</section>
+
+<section>
+	<h2>引入 Mock 模块</h2>
+	<p>var out = htmlWebpackPlugin.options.mock;</p>
+	<pre><code class="hljs">
+- var out = htmlWebpackPlugin.options.mock;
+doctype html
+html
+	head
+		include ../../mods/common/head.pug
+		link(rel="stylesheet" href="../../css/doc/demo.css")
+		script.
+			//- 配置项输出示例，支持pug转php
+			$CONFIG.data = !{JSON.stringify(out['data'])};
+			console.log('$CONFIG.data:', $CONFIG['data']);
+	body
+		include ../../mods/doc/p-header/index.pug
+		include ../../mods/doc/p-photo/index.pug
+		include ../../mods/common/boot.pug
+		script(src="../../js/doc/demo.js")
+	</code></pre>
+</section>
+
+<section>
+	<h2>挂载 Mock 数据</h2>
+	<pre><code class="hljs">
+const $htmlWebpackPlugin = require('html-webpack-plugin');
+webpackConfig.plugins.push(
+	new $htmlWebpackPlugin({
+		filename: 'index.html',
+		mock: {
+			title: 'index',
+			pages: pages
+		},
+		template: $path.join($config.root, 'index.pug'),
+		inject: 'body',
+		hash: false,
+		chunks: [],
+		chunksSortMode: 'none',
+		minify: false
+	})
+);
+	</code></pre>
+</section>
+
+<section>
+	<h2>反向代理配置</h2>
+	<pre><code class="hljs">
+const $browserSync = require('browser-sync');
+const $proxy = require('http-proxy-middleware');
+
+$gulp.task('serve-browserSync', done => {
+	// 默认我们包裹 mock 服务来进行调试
+	// 也可以包裹线上服务地址来进行调试
+	// borwserSync 结合 http-proxy-middleware 能获得更强大的反向代理功能
+	$browserSync({
+		ghostMode: false,
+		injectChanges: true,
+		port: $config.devServerPort,
+		proxy: {
+			target: '127.0.0.1:' + $config.mockServerPort
+		},
+		middleware: [
+			{
+				route: '/XianFront',
+				handle: $proxy({
+					target: 'http://test.dsx.qq.com/',
+					changeOrigin: true,
+					logLevel: 'debug',
+					secure: false
+				})
+			},
+			// 反向代理示例
+			// 到 http://127.0.0.1:8090/index.php 的请求，都会转发到
+			// http://m.db.house.qq.com/index.php
+			{
+				route: '/index.php',
+				handle: $proxy({
+					target: 'http://openapi.house.qq.com',
+					changeOrigin: true,
+					logLevel: 'debug',
+					secure: false
+				})
+			}
+		]
+	});
+	done();
+});
+	</code></pre>
+</section>
+
+<section>
+	<h2>反向代理示例</h2>
+	<img src="images/reverse-proxy-host.jpg" alt="">
+	<img src="images/reverse-proxy-result.jpg" alt="">
+</section>
+
+<section>
+	<h2>调试环境总结</h2>
+	<ul>
+		<li>目标是可以模拟任意状况，任意步骤</li>
+		<li>hosts，代理，反向代理，mock 服务 需要灵活搭配</li>
+		<li>前后分离可减少沟通成本</li>
+	</ul>
 </section>
 
 <section>
