@@ -37,6 +37,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 .tl{
 	text-align: left;
 }
+.reveal h2{
+	text-transform: none;
+}
 </style>
 </head>
 
@@ -102,7 +105,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>感谢chrome</h2>
+	<h2>感谢 chrome</h2>
 	<p><a href="https://developer.chrome.com/devtools">https://developer.chrome.com/devtools</a></p>
 	<img src="images/devtools.jpg" />
 </section>
@@ -124,22 +127,22 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<p>console.dir</p>
+	<h2>console.dir</h2>
 	<img src="images/console_dir.jpg" />
 </section>
 
 <section>
-	<p>console.time</p>
+	<h2>console.time</h2>
 	<img src="images/console_time.jpg" />
 </section>
 
 <section>
-	<p>console.group</p>
+	<h2>console.group</h2>
 	<img src="images/console_group.jpg" />
 </section>
 
 <section>
-	<p>console.table</p>
+	<h2>console.table</h2>
 	<img src="images/console_table.jpg" />
 </section>
 
@@ -158,14 +161,14 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<p>debugger;</p>
+	<h2>debugger;</h2>
 	<p style="font-size: 28px;">调用任何一个可用的调试器</p>
 	<p style="font-size: 28px;">如果没有调试器可用,则该语句没有任何效果</p>
 	<img src="images/debugger.jpg" />
 </section>
 
 <section>
-	<p>breakpoint</p>
+	<h2>breakpoint</h2>
 	<img src="images/breakpoint.jpg" />
 </section>
 
@@ -192,74 +195,10 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <section>
 	<h2>断点调试经验谈</h2>
 	<ul>
-		<li>不修改源代码</li>
 		<li>适用于检查复杂逻辑</li>
 		<li>频繁的思维打断比较消耗时间</li>
 		<li>仅用于寻找问题，不用于修改代码</li>
 	</ul>
-</section>
-
-<section>
-	<h2>配置调试环境</h2>
-	<p>可重现的 bug 才是可以调试的 bug</p>
-</section>
-
-<section>
-	<h2>使用正确的调试工具</h2>
-	<ul>
-		<li>不要使用类似 IE Tester 之类第三方模拟器</li>
-		<li>使用虚拟机</li>
-		<li>移动端真机测试不可避免</li>
-	</ul>
-</section>
-
-<section>
-	<h2>网络基础知识</h2>
-	<p>前端调试需要了解的后端知识</p>
-	<ul>
-		<li>WEB服务</li>
-		<li>CDN</li>
-		<li>代理</li>
-	</ul>
-</section>
-
-<section>
-	<h2>CDN</h2>
-	<p>这意味着线上静态文件往往在另一个域名</p>
-	<img src="images/cdn.jpg" />
-</section>
-
-<section>
-	<h2>配置hosts</h2>
-	<ul>
-		<li>c:/windows/system32/drivers/etc/hosts</li>
-		<li>如果hosts未生效，清除dns缓存</li>
-		<li>ipconfig /flushdns</li>
-		<li>用 ping 命令检测</li>
-	</ul>
-</section>
-
-<section>
-	<h2>chrome 查看每个请求的 dns 解析</h2>
-	<img src="images/chrome-network-dns.jpg" />
-</section>
-
-<section>
-	<h2>chrome 清除 DNS 缓存</h2>
-	<p><a href="chrome://net-internals/#dns" target="_blank">chrome://net-internals/#dns</a></p>
-	<img src="images/chrome-dns-clean.jpg" />
-</section>
-
-<section>
-	<h2>代理</h2>
-</section>
-
-<section>
-	<h2>MOCK服务与反向代理</h2>
-</section>
-
-<section>
-	<h2>配置虚拟机</h2>
 </section>
 
 <section>
@@ -294,6 +233,136 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 		<li><img src="images/webpack-vconsole.jpg" /></li>
 	</ul>
 	<img src="images/vconsole.png" style="width: 30%; float: right;" />
+</section>
+
+<section>
+	<h2>配置调试环境</h2>
+	<p>可重现的 bug 才是可以调试的 bug</p>
+</section>
+
+<section>
+	<h2>虚拟机</h2>
+</section>
+
+<section>
+	<h2>HOSTS/DNS</h2>
+</section>
+
+<section>
+	<h2>配置hosts</h2>
+	<ul>
+		<li>c:/windows/system32/drivers/etc/hosts</li>
+		<li>/etc/hosts</li>
+		<li>如果hosts未生效，清除dns缓存</li>
+		<li>ipconfig /flushdns</li>
+		<li>用 ping 命令检测</li>
+	</ul>
+</section>
+
+<section>
+	<h2>chrome 查看每个请求的 dns 解析</h2>
+	<img src="images/chrome-network-dns.jpg" />
+</section>
+
+<section>
+	<h2>chrome 清除 DNS 缓存</h2>
+	<p><a href="chrome://net-internals/#dns" target="_blank">chrome://net-internals/#dns</a></p>
+	<img src="images/chrome-dns-clean.jpg" />
+</section>
+
+<section>
+	<h2>chrome 查看每个请求的 dns 解析</h2>
+	<img src="images/chrome-network-dns.jpg" />
+</section>
+
+<section>
+	<h2>hosts 切换工具</h2>
+	<p>for windows</p>
+	<p><a href="https://chrome.google.com/webstore/detail/mfoaclfeiefiehgaojbmncmefhdnikeg?utm_source=chrome-app-launcher-info-dialog" target="_blank">hostadmin app</a></p>
+	<img src="images/hostadmin-app.png" />
+	<img src="images/hostadmin-config.png" />
+</section>
+
+<section>
+	<h2>hosts 切换工具</h2>
+	<p>for mac</p>
+	<p><a href="https://h.ihosts.toolinbox.net/cn/" target="_blank">ihosts</a></p>
+	<img src="images/ihosts-config.jpg" style="width: 60%; vertical-align: top;" />
+	<img src="images/ihosts.jpg" style="width: 30%; vertical-align: top;"/>
+</section>
+
+<section>
+	<h2>问题</h2>
+	<ul>
+		<li>线上静态文件往往在多个域名</li>
+		<li>不方便对所有文件配置测试服务器</li>
+		<li>手机无法配置 hosts</li>
+	</ul>
+</section>
+
+<section>
+	<h2>代理调试</h2>
+</section>
+
+<section>
+	<h2>什么是代理？</h2>
+	<ul>
+		<li class="fragment">你想认识 TA，TA 收到各种小纸条并积极回应，这叫“web 服务”</li>
+		<li class="fragment">你想传纸条给 TA，需要别人帮你传纸条，这叫 “路由”</li>
+		<li class="fragment">TA 不知道你让你的朋友 A 审查你给 TA 的纸条，这叫“正向代理”</li>
+		<li class="fragment">你不知道 TA 让 TA 的朋友 B 审查 TA 接收传出的纸条，这叫“反向代理”</li>
+		<li class="fragment">你的纸条必须经过 C，但你和 TA 都不知道 C 在偷偷审查纸条，这叫“透明代理”</li>
+		<li class="fragment">TA 要求凡是你传来的纸条，A 都要打开处理一下，你被匹配了“代理规则”</li>
+		<li class="fragment">A, B, C 能做什么？细思恐极</li>
+	</ul>
+</section>
+
+<section>
+	<h2>本地默认代理配置</h2>
+	<div style="overflow: auto; max-height: 550px;">
+		<img src="images/proxy-ie.jpg" style="display:block; width: 1200px; max-width: 1200px; max-height: 1200px; margin: 0;" />
+	</div>
+</section>
+
+<section>
+	<h2>chrome插件切换代理</h2>
+	<p><a href="https://github.com/FelisCatus/SwitchyOmega" target="_blank">SwitchyOmega</a></p>
+	<img src="images/proxy-switchy-chrome.jpg" />
+	<img src="images/proxy-switchy-panel.jpg" />
+</section>
+
+<section>
+	<h2>SwitchyOmega 代理选项配置</h2>
+	<img src="images/proxy-switchy-config.jpg" />
+</section>
+
+<section>
+	<h2>手机配置代理</h2>
+	<img style="width: 30%;" src="images/proxy-config-android.jpeg" />
+	<img style="width: 30%;" src="images/proxy-config-ios.jpeg" />
+</section>
+
+<section>
+	<h2>fiddler</h2>
+	<p><a href="http://www.telerik.com/fiddler" target="_blank">http://www.telerik.com/fiddler</a></p>
+	<img src="images/fiddler-view.jpeg" />
+</section>
+
+<section>
+	<h2>fiddler 代理服务配置</h2>
+	<img src="images/fiddler-view.jpeg" />
+</section>
+
+<section>
+	<h2>nproxy</h2>
+</section>
+
+<section>
+	<h2>anyproxy</h2>
+</section>
+
+<section>
+	<h2>MOCK服务与反向代理</h2>
 </section>
 
 <section>
