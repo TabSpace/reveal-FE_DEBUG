@@ -193,7 +193,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>断点调试经验谈</h2>
+	<h2>断点单步调试经验谈</h2>
 	<ul>
 		<li>适用于检查复杂逻辑</li>
 		<li>频繁的思维打断比较消耗时间</li>
@@ -226,6 +226,40 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
+	<h2>IOS usb debug</h2>
+	<p>IOS 设备 USB 连接 MAC OS 桌面设备，打开 safari</p>
+	<img src="images/ios-safari-console.jpg" />
+</section>
+
+<section>
+	<img src="images/ios-safari-element.jpg" />
+	<img src="images/ios-safari-select.jpeg" style="margin-top: 0;" />
+</section>
+
+<section>
+	<h2>Android usb debug</h2>
+	<div style="text-align: left; width: 30%; display: inline-block; font-size: 30px; vertical-align: top;">
+		<p>以 MIUI8.2 为例</p>
+		<p>打开 设置 ，最上面有“我的设备”打开，往下拉，“全部参数”这四个字的下面就是“MIUI版本”信息，连续点四次，进入开发者模式。</p>
+		<p>回到 设置，进入 更多设置，点击 开发者选项</p>
+	</div>
+	<img src="images/android-enable-debug.jpeg" style="width: 30%;" />
+	<img src="images/android-usb-debug.jpeg" style="width: 30%;" />
+</section>
+
+<section>
+	<h2>chrome inspect</h2>
+	<p>android 设备 USB 连接桌面设备，打开 chrome</p>
+	<p>chrome://inspect/#devices</p>
+	<img src="images/android-chrome-inspect.jpg" style="width: 60%;" />
+</section>
+
+<section>
+	<h2>chrome inspect</h2>
+	<img src="images/android-chrome-usbdebug.jpg" style="width: 60%;" />
+</section>
+
+<section>
 	<h2>控制台模拟</h2>
 	<ul style="width: 60%; float: left; list-style: none;">
 		<li><a href="https://github.com/WechatFE/vConsole" target="_blank">WechatFE/vConsole</a></li>
@@ -242,6 +276,21 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 
 <section>
 	<h2>虚拟机</h2>
+</section>
+
+<section>
+	<h2>Virtual Box</h2>
+	<img src="images/virtual-box.jpg" style="width: 80%;" />
+</section>
+
+<section>
+	<h2>创建虚拟机</h2>
+	<img src="images/virtual-box-create.jpg" style="width: 80%;" />
+</section>
+
+<section>
+	<h2>开启虚拟机</h2>
+	<img src="images/virtual-xp.jpg" style="width: 80%;" />
 </section>
 
 <section>
@@ -312,7 +361,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 		<li class="fragment">TA 不知道你让你的朋友 A 审查你给 TA 的纸条，这叫“正向代理”</li>
 		<li class="fragment">你不知道 TA 让 TA 的朋友 B 审查 TA 接收传出的纸条，这叫“反向代理”</li>
 		<li class="fragment">你的纸条必须经过 C，但你和 TA 都不知道 C 在偷偷审查纸条，这叫“透明代理”</li>
-		<li class="fragment">TA 要求凡是你传来的纸条，A 都要打开处理一下，你被匹配了“代理规则”</li>
+		<li class="fragment">凡是你传来的纸条，B 都要打开看看有多肉麻，你这是被匹配了“代理规则”</li>
 		<li class="fragment">A, B, C 能做什么？细思恐极</li>
 	</ul>
 </section>
@@ -345,20 +394,95 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <section>
 	<h2>fiddler</h2>
 	<p><a href="http://www.telerik.com/fiddler" target="_blank">http://www.telerik.com/fiddler</a></p>
-	<img src="images/fiddler-view.jpeg" />
+	<img src="images/fiddler-view.png" />
 </section>
 
 <section>
 	<h2>fiddler 代理服务配置</h2>
-	<img src="images/fiddler-view.jpeg" />
+	<img src="images/fiddler-options.png" />
+</section>
+
+<section>
+	<h2>fiddler 代理规则配置</h2>
+	<img src="images/fiddler-autoresponder.png" alt="">
+	<img src="images/fiddler-match.png" alt="">
+	<img src="images/fiddler-rule.png" alt="">
+</section>
+
+<section>
+	<h2>fiddler 插件 willow</h2>
+	<img src="images/fiddler-willow.png" />
+</section>
+
+<section>
+	<h2>问题</h2>
+	<ul>
+		<li>fiddler 不支持 mac</li>
+		<li>规则文件不方便复用，项目切换麻烦</li>
+		<li>https 配置复杂</li>
+	</ul>
 </section>
 
 <section>
 	<h2>nproxy</h2>
+	<p><a href="https://github.com/goddyZhao/nproxy" target="_blank">https://github.com/goddyZhao/nproxy</a></p>
+	<img src="images/nproxy-site.jpg" />
+</section>
+
+<section>
+	<h2>nproxy 代理CDN文件</h2>
+	<img src="images/nproxy-before.jpg" alt="">
+	<img src="images/nproxy-after.jpg" alt="">
+</section>
+
+<section>
+	<h2>nproxy 规则配置</h2>
+	<p><a href="http://goddyzhao.me/nproxy/" target="_blank">http://goddyzhao.me/nproxy/</a></p>
+	<img src="images/nproxy-config.jpg" alt="">
+</section>
+
+<section>
+	<h2>nproxy 服务启动</h2>
+	<img src="images/nproxy-task.jpg" style="width: 60%;" alt="">
+	<img src="images/nproxy-cli-show.jpg" alt="">
 </section>
 
 <section>
 	<h2>anyproxy</h2>
+	<p><a href="https://github.com/alibaba/anyproxy" target="_blank">https://github.com/alibaba/anyproxy</a></p>
+	<img src="images/anyproxy-site.jpg" alt="">
+</section>
+
+<section>
+	<h2>anyproxy 规则配置</h2>
+	<p><a href="http://anyproxy.io/cn.html" target="_blank">http://anyproxy.io/cn.html</a></p>
+	<img src="images/anyproxy-rule.jpg" alt="">
+</section>
+
+<section>
+	<pre><code class="hljs">
+let mergeCORSHeader = (reqHeader, originHeader) => {
+	var targetObj = originHeader || {};
+
+	delete targetObj['Access-Control-Allow-Credentials'];
+	delete targetObj['Access-Control-Allow-Origin'];
+	delete targetObj['Access-Control-Allow-Methods'];
+	delete targetObj['Access-Control-Allow-Headers'];
+
+	targetObj['access-control-allow-credentials'] = 'true';
+	targetObj['access-control-allow-origin'] = reqHeader['origin'] || '*';
+	targetObj['access-control-allow-methods'] = 'GET, POST, PUT';
+	targetObj['access-control-allow-headers'] = reqHeader['access-control-request-headers'] || '*';
+
+	return targetObj;
+};
+	</code></pre>
+	<img src="images/anyproxy-cors.jpg" alt="">
+</section>
+
+<section>
+	<h2>anyproxy 服务启动</h2>
+	<img src="images/anyproxy-start.jpg" alt="">
 </section>
 
 <section>
@@ -402,7 +526,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </section>
 
 <section>
-	<h2>完善手头工具</h2>
+	<h2>完善工具</h2>
 	<ul>
 		<li>长期坚持，不断更新</li>
 		<li>例子: 混用换行符引发的页面输出故障</li>
